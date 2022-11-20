@@ -3,7 +3,6 @@ import Image from "next/image";
 import styles from "../styles/Home.module.css";
 import React from "react";
 import styled from "styled-components";
-import LoginForm from "../components/LoginForm";
 
 export default function Login() {
   return (
@@ -13,10 +12,6 @@ export default function Login() {
         <meta name="description" content="Social Media RedBird" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-
-      <LoginForm />
-
-
 
       
     </div>

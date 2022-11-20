@@ -1,11 +1,9 @@
 import Head from "next/head";
 import Image from "next/image";
 import styles from "../styles/Home.module.css";
-import React from "react";
-import styled from "styled-components";
 import LoginForm from "../components/LoginForm";
 
-export default function Login() {
+export default function Register() {
   return (
     <div className={styles.container}>
       <Head>
@@ -16,9 +14,7 @@ export default function Login() {
 
       <LoginForm />
 
-
-
-      
+    
     </div>
   );
 }
