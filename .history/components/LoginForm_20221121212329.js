@@ -2,8 +2,9 @@ import styled from "styled-components";
 import React from "react";
 import { useRouter } from "next/router";
 import { auth } from '../firebase/firebaseConfig';
-import { useState, useEffect } from "react";
-import { onAuthStateChanged, signInWithEmailAndPassword } from "firebase/auth";
+import { useState } from "react";
+import { signInWithEmailAndPassword } from "firebase/auth";
+
 
 const LoginCont = styled.div`
     display:flex;
@@ -49,12 +50,6 @@ const SubheadTwo = styled.h6`
 export default function LoginForm({
     header="Login"
 }) {
-
-    const [loginEmail, setLoginEmail] = useState("");
-    const [loginPassword, setLoginPassword] = useState("");
-
-    const [user, setUser] = useState({});
-
     const login = async () => {
         try {
             const user = await signInWithEmailAndPassword(auth, loginEmail, loginPassword)
@@ -65,16 +60,10 @@ export default function LoginForm({
     }
 
     React.useEffect(() => {
-        onAuthStateChanged(auth, (currentUser) => setUser(currentUser))
-    }, [])
+
+    })
 
     const r = useRouter();
-    const authorization = auth;
-
-    const handleSubmit = event => {
-        event.preventDefault();
-        event.target.reset();
-    }
     
     return <LoginCont>
     
@@ -92,18 +81,15 @@ export default function LoginForm({
             Password
             <LoginInput 
             onChange={(event) => {
-                setLoginPassword(event.target.value)}}
+                setLoginPassword(event.target.value)
                 placeholder="Type Password..." name="password"/>
         </label>
-        <SubmitButton 
-        onClick={login}
-        type="submit" value="Login" />
+        <SubmitButton type="submit" value="Login" />
 
         <h6>New user?</h6>
         <SubheadTwo onClick={() => r.push("/register")}>Register your account now!</SubheadTwo>
         
     </FormCont>
-    
     
 </LoginCont>
 

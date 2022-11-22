@@ -56,6 +56,7 @@ export default function RegisterForm({
     const [loginEmail, setLoginEmail] = useState("");
     const [loginPassword, setLoginPassword] = useState("");
 
+
     const [user, setUser] = useState({});
 
   const register = async () => {
@@ -69,6 +70,9 @@ export default function RegisterForm({
     }
   }
   
+    React.useEffect(() => {
+        onAuthStateChanged(auth, (currentUser) => setUser(currentUser))
+    }, [])
 
     const r = useRouter();
     const authorization = auth;
@@ -77,8 +81,6 @@ export default function RegisterForm({
         event.preventDefault();
         event.target.reset();
     }
-
-    
     
     return <RegCont>
     

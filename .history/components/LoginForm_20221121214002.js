@@ -1,13 +1,11 @@
 import styled from "styled-components";
 import React from "react";
 import { useRouter } from "next/router";
-import { createUserWithEmailAndPassword, onAuthStateChanged } from "firebase/auth";
-import { useState, useEffect } from "react";
-import auth from '../firebase/firebaseConfig';
+import { auth } from '../firebase/firebaseConfig';
+import { useState } from "react";
+import { onAuthStateChanged, signInWithEmailAndPassword } from "firebase/auth";
 
-
-
-const RegCont = styled.div`
+const LoginCont = styled.div`
     display:flex;
     justify-content:center;
     padding-top:30%;
@@ -23,7 +21,7 @@ const FormCont = styled.form `
 
 `;
 
-const RegInput = styled.input`
+const LoginInput = styled.input`
     display:flex;
     margin-top:5px;
     margin-bottom:5px;
@@ -47,28 +45,28 @@ const SubheadTwo = styled.h6`
     color:blue;
 `;
 
-export default function RegisterForm({
-    header="Register Your Account"
+
+export default function LoginForm({
+    header="Login"
 }) {
-    const [registerEmail, setRegisterEmail] = useState("");
-    const [registerPassword, setRegisterPassword] = useState("");
 
     const [loginEmail, setLoginEmail] = useState("");
     const [loginPassword, setLoginPassword] = useState("");
 
     const [user, setUser] = useState({});
 
-  const register = async () => {
-    try {
-      setRegisterEmail("");
-      setRegisterPassword("");
-      const user = await createUserWithEmailAndPassword(auth, registerEmail, registerPassword);
-      console.log(user);
-    } catch(error) {
-      console.log(error.message)
+    const login = async () => {
+        try {
+            const user = await signInWithEmailAndPassword(auth, loginEmail, loginPassword)
+            console.log(user);
+        } catch(error) {
+            console.log(error.message);
+        }
     }
-  }
-  
+
+    React.useEffect(() => {
+        onAuthStateChanged(auth, (currentUser) => setUser(currentUser))
+    }, [])
 
     const r = useRouter();
     const authorization = auth;
@@ -77,43 +75,37 @@ export default function RegisterForm({
         event.preventDefault();
         event.target.reset();
     }
-
     
-    
-    return <RegCont>
+    return <LoginCont>
     
     <FormCont onSubmit={handleSubmit}>
         <h2>{header}</h2>
         <label>
             Email
-            <RegInput placeholder="Type Email..."
+            <LoginInput 
             onChange={(event) => {
-                setRegisterEmail(event.target.value)
+                setLoginEmail(event.target.value)
             }}
-            name="Email"/>
+            placeholder="Type Email..." name="Email"/>
         </label>
         <label>
             Password
-            <RegInput placeholder="Type Password..."
+            <LoginInput 
             onChange={(event) => {
-                setRegisterPassword(event.target.value)
-            }} name="password"/>
-        </label>
-        <label>
-            Confirm Password
-            <RegInput placeholder="Re-type Password..."/>
+                setLoginPassword(event.target.value)}}
+                placeholder="Type Password..." name="password"/>
         </label>
         <SubmitButton 
-        onClick={register}
-        type="submit" value="Register" />
+        onClick={login}
+        type="submit" value="Login" />
 
-        <h6>Already a user?</h6>
-        <SubheadTwo onClick={() => r.push("/login")} >Login now!</SubheadTwo>
+        <h6>New user?</h6>
+        <SubheadTwo onClick={() => r.push("/register")}>Register your account now!</SubheadTwo>
         
     </FormCont>
-   
     
-</RegCont>
+    
+</LoginCont>
 
     
 }

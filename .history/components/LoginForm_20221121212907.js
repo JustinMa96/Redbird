@@ -2,8 +2,9 @@ import styled from "styled-components";
 import React from "react";
 import { useRouter } from "next/router";
 import { auth } from '../firebase/firebaseConfig';
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { onAuthStateChanged, signInWithEmailAndPassword } from "firebase/auth";
+
 
 const LoginCont = styled.div`
     display:flex;
@@ -69,12 +70,6 @@ export default function LoginForm({
     }, [])
 
     const r = useRouter();
-    const authorization = auth;
-
-    const handleSubmit = event => {
-        event.preventDefault();
-        event.target.reset();
-    }
     
     return <LoginCont>
     
@@ -103,7 +98,9 @@ export default function LoginForm({
         <SubheadTwo onClick={() => r.push("/register")}>Register your account now!</SubheadTwo>
         
     </FormCont>
-    
+    <div>
+        {user?.email}
+    </div>
     
 </LoginCont>
 

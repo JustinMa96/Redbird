@@ -77,8 +77,6 @@ export default function RegisterForm({
         event.preventDefault();
         event.target.reset();
     }
-
-    
     
     return <RegCont>
     
@@ -105,7 +103,7 @@ export default function RegisterForm({
         </label>
         <SubmitButton 
         onClick={register}
-        type="submit" value="Register" />
+        type="submit"  />
 
         <h6>Already a user?</h6>
         <SubheadTwo onClick={() => r.push("/login")} >Login now!</SubheadTwo>

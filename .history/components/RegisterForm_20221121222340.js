@@ -60,8 +60,7 @@ export default function RegisterForm({
 
   const register = async () => {
     try {
-      setRegisterEmail("");
-      setRegisterPassword("");
+      
       const user = await createUserWithEmailAndPassword(auth, registerEmail, registerPassword);
       console.log(user);
     } catch(error) {
@@ -78,8 +77,7 @@ export default function RegisterForm({
         event.target.reset();
     }
 
-    
-    
+   
     return <RegCont>
     
     <FormCont onSubmit={handleSubmit}>

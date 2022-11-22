@@ -64,10 +64,8 @@ export default function RegisterForm({
       setRegisterPassword("");
       const user = await createUserWithEmailAndPassword(auth, registerEmail, registerPassword);
       console.log(user);
-    } catch(error) {
-      console.log(error.message)
     }
-  }
+  
   
 
     const r = useRouter();
@@ -77,8 +75,6 @@ export default function RegisterForm({
         event.preventDefault();
         event.target.reset();
     }
-
-    
     
     return <RegCont>
     

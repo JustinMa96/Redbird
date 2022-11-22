@@ -77,8 +77,6 @@ export default function RegisterForm({
         event.preventDefault();
         event.target.reset();
     }
-
-    
     
     return <RegCont>
     

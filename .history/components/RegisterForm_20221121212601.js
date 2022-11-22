@@ -1,11 +1,9 @@
 import styled from "styled-components";
 import React from "react";
 import { useRouter } from "next/router";
-import { createUserWithEmailAndPassword, onAuthStateChanged } from "firebase/auth";
-import { useState, useEffect } from "react";
+import { createUserWithEmailAndPassword } from "firebase/auth";
+import { useState } from "react";
 import auth from '../firebase/firebaseConfig';
-
-
 
 const RegCont = styled.div`
     display:flex;
@@ -53,11 +51,8 @@ export default function RegisterForm({
     const [registerEmail, setRegisterEmail] = useState("");
     const [registerPassword, setRegisterPassword] = useState("");
 
-    const [loginEmail, setLoginEmail] = useState("");
-    const [loginPassword, setLoginPassword] = useState("");
-
     const [user, setUser] = useState({});
-
+    
   const register = async () => {
     try {
       setRegisterEmail("");
@@ -70,19 +65,12 @@ export default function RegisterForm({
   }
   
 
+
     const r = useRouter();
-    const authorization = auth;
-
-    const handleSubmit = event => {
-        event.preventDefault();
-        event.target.reset();
-    }
-
-    
     
     return <RegCont>
     
-    <FormCont onSubmit={handleSubmit}>
+    <FormCont>
         <h2>{header}</h2>
         <label>
             Email
@@ -111,7 +99,6 @@ export default function RegisterForm({
         <SubheadTwo onClick={() => r.push("/login")} >Login now!</SubheadTwo>
         
     </FormCont>
-   
     
 </RegCont>
 

@@ -5,7 +5,7 @@ import LoginForm from "../components/LoginForm";
 import RegisterForm from "../components/RegisterForm";
 import { createUserWithEmailAndPassword } from "firebase/auth";
 import { useState } from "react";
-import { auth } from '../firebase/firebaseConfig';
+import auth from '../firebase/firebaseConfig';
 
 export default function Register() {
   
