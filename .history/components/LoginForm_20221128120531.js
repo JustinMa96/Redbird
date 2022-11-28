@@ -9,7 +9,7 @@ const LoginCont = styled.div`
     display:flex;
     justify-content:center;
     padding-top:30%;
-    
+    ksdlsdjlkds
     
 `;
 
