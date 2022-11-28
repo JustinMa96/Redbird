@@ -78,7 +78,9 @@ export default function RegisterForm({
         event.target.reset();
     }
 
-    
+    React.useEffect(() => {
+        onAuthStateChanged(auth, (currentUser) => setUser(currentUser))
+    }, )
     
     return <RegCont>
     
