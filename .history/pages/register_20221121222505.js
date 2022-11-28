@@ -1,24 +1,26 @@
 import Head from "next/head";
 import Image from "next/image";
 import styles from "../styles/Home.module.css";
-import React from "react";
-import styled from "styled-components";
 import LoginForm from "../components/LoginForm";
+import RegisterForm from "../components/RegisterForm";
+import { createUserWithEmailAndPassword } from "firebase/auth";
+import { useState } from "react";
+import { auth } from '../firebase/firebaseConfig';
 
-export default function Login() {
+export default function Register() {
+  
+
   return (
-    <div>
+    <div className={styles.container}>
       <Head>
         <title>Redbird</title>
         <meta name="description" content="Social Media RedBird" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      <LoginForm />
+      <RegisterForm />
 
-
-
-      
+    
     </div>
   );
 }
