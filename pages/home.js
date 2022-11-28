@@ -2,6 +2,9 @@ import Head from "next/head";
 import Image from "next/image";
 import styles from "../styles/Home.module.css";
 
+import ShareAPost from "../components/ShareAPost";
+import Posts from "../components/Posts";
+
 export default function Home() {
   return (
     <div className={styles.container}>
@@ -13,6 +16,9 @@ export default function Home() {
 
       <main className={styles.main}>
         <h1 className={styles.title}>Home/Posts</h1>
+        <ShareAPost></ShareAPost>
+        <Posts></Posts>
+
       </main>
 
       <footer className={styles.footer}>
