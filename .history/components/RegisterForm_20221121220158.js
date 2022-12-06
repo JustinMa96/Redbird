@@ -77,8 +77,6 @@ export default function RegisterForm({
         event.preventDefault();
         event.target.reset();
     }
-
-    
     
     return <RegCont>
     
@@ -99,10 +97,7 @@ export default function RegisterForm({
                 setRegisterPassword(event.target.value)
             }} name="password"/>
         </label>
-        <label>
-            Confirm Password
-            <RegInput placeholder="Re-type Password..."/>
-        </label>
+       
         <SubmitButton 
         onClick={register}
         type="submit" value="Register" />

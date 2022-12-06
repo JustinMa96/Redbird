@@ -59,14 +59,17 @@ export default function RegisterForm({
     const [user, setUser] = useState({});
 
   const register = async () => {
-    try {
-      setRegisterEmail("");
-      setRegisterPassword("");
-      const user = await createUserWithEmailAndPassword(auth, registerEmail, registerPassword);
-      console.log(user);
-    } catch(error) {
-      console.log(error.message)
-    }
+    createUserWithEmailAndPassword(auth, email, password)
+    .then((userCredential) => {
+      // Signed in 
+      const user = userCredential.user;
+      // ...
+    })
+    .catch((error) => {
+      const errorCode = error.code;
+      const errorMessage = error.message;
+      // ..
+    });
   }
   
 
@@ -78,7 +81,9 @@ export default function RegisterForm({
         event.target.reset();
     }
 
-    
+    React.useEffect(() => {
+        onAuthStateChanged(auth, (currentUser) => setUser(currentUser))
+    }, [])
     
     return <RegCont>
     
