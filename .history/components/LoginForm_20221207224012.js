@@ -69,7 +69,7 @@ export default function LoginForm({
 
     }
     
-    const r = useRouter();
+    const r = useState();
 
     return <LoginCont>
     
@@ -81,7 +81,7 @@ export default function LoginForm({
             }}
             placeholder="Type Email..." name="Email"/>
      
-         
+            Password
             <LoginInput 
             onChange={(event) => {setLoginPassword(event.target.value);
             }}

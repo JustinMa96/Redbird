@@ -67,8 +67,7 @@ export default function RegisterForm({
         }
    };
     
-    const r = useRouter();
-
+    
     return <RegCont>
     
    

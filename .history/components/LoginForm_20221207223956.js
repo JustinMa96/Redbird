@@ -9,8 +9,7 @@ const LoginCont = styled.div`
     display:flex;
     justify-content:center;
     padding-top:30%;
-    flex-direction:column;
-    align-items:center;
+    
     
 `;
 
@@ -69,7 +68,7 @@ export default function LoginForm({
 
     }
     
-    const r = useRouter();
+    const r = useState();
 
     return <LoginCont>
     
@@ -81,7 +80,7 @@ export default function LoginForm({
             }}
             placeholder="Type Email..." name="Email"/>
      
-         
+            Password
             <LoginInput 
             onChange={(event) => {setLoginPassword(event.target.value);
             }}

@@ -12,8 +12,6 @@ const RegCont = styled.div`
     display:flex;
     justify-content:center;
     padding-top:30%;
-    flex-direction:column;
-    align-items:center;
     
 `;
 
@@ -39,11 +37,9 @@ const SubmitButton = styled.button`
     margin-top:15px;
     border-radius:5px;
     width:70px;
-    height:25px;
     justify-content:center;
     padding:2px;
     font-weight:bold;
-    
     
 `;
 
@@ -67,8 +63,7 @@ export default function RegisterForm({
         }
    };
     
-    const r = useRouter();
-
+    
     return <RegCont>
     
    
@@ -92,7 +87,7 @@ export default function RegisterForm({
          
             <RegInput placeholder="Re-type Password..."/>
    
-        <SubmitButton
+        <SubmitButton 
         onClick={register}
         />
 

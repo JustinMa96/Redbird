@@ -44,7 +44,6 @@ const SubmitButton = styled.button`
     padding:2px;
     font-weight:bold;
     
-    
 `;
 
 const SubheadTwo = styled.h6`
@@ -67,8 +66,7 @@ export default function RegisterForm({
         }
    };
     
-    const r = useRouter();
-
+    
     return <RegCont>
     
    
@@ -92,7 +90,7 @@ export default function RegisterForm({
          
             <RegInput placeholder="Re-type Password..."/>
    
-        <SubmitButton
+        <SubmitButton 
         onClick={register}
         />
 

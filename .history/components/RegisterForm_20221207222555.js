@@ -67,8 +67,7 @@ export default function RegisterForm({
         }
    };
     
-    const r = useRouter();
-
+    
     return <RegCont>
     
    
@@ -92,7 +91,7 @@ export default function RegisterForm({
          
             <RegInput placeholder="Re-type Password..."/>
    
-        <SubmitButton
+        <SubmitButton type="register"
         onClick={register}
         />
 

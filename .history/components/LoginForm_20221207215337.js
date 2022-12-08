@@ -9,8 +9,7 @@ const LoginCont = styled.div`
     display:flex;
     justify-content:center;
     padding-top:30%;
-    flex-direction:column;
-    align-items:center;
+    
     
 `;
 
@@ -54,47 +53,41 @@ export default function LoginForm({
     const [loginEmail, setLoginEmail] = useState("");
     const [loginPassword, setLoginPassword] = useState("");
 
-  
 
     const login = async () => {
-        try {
-            const user = await signInWithEmailAndPassword(auth, loginEmail, loginPassword)
-            console.log(user);
-        } catch (error) {
-            console.log(error.message);
-        }
-    };
+
+    }
 
     const logout = async () => {
 
     }
     
-    const r = useRouter();
-
     return <LoginCont>
     
-   
+    <FormCont onSubmit={LoginUser}>
         <h2>{header}</h2>
-       
+        <label>
+            Email
             <LoginInput 
             onChange={(event) => {setLoginEmail(event.target.value);
             }}
             placeholder="Type Email..." name="Email"/>
-     
-         
+        </label>
+        <label>
+            Password
             <LoginInput 
             onChange={(event) => {setLoginPassword(event.target.value);
             }}
                 placeholder="Type Password..." name="password"/>
-  
+        </label>
         <SubmitButton 
-        onClick={login}
+        onClick={LoginUser}
         type="submit" value="Login" />
 
         <h6>New user?</h6>
         <SubheadTwo onClick={() => r.push("/register")}>Register your account now!</SubheadTwo>
         
-
+    </FormCont>
     
     
 </LoginCont>
