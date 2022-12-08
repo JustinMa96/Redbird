@@ -8,7 +8,7 @@ import { db } from "../firebase/firebaseConfig.js";
 import "../pages/createpost.js"
 import styled from "styled-components";
 import { useRouter } from "next/router";
- import { getAuth } from "firebase/auth";
+ 
 
 export default function Home() {
 

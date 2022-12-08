@@ -3,7 +3,7 @@ import React from "react";
 import { useRouter } from "next/router";
 import { createUserWithEmailAndPassword, onAuthStateChanged } from "firebase/auth";
 import { useState, useEffect } from "react";
-import { auth } from '../firebase/firebaseConfig';
+import auth from '../firebase/firebaseConfig';
 import { Certificate } from "crypto";
 
 
@@ -61,7 +61,7 @@ export default function RegisterForm({
    const register = async () => {
         try {
             const user = await createUserWithEmailAndPassword(auth, registerEmail, registerPassword);
-            console.log(user)
+            console.log(registerEmail)
         } catch (error) {
             console.log(error.message);
         }
@@ -94,7 +94,7 @@ export default function RegisterForm({
    
         <SubmitButton
         onClick={register}
-       >Register</SubmitButton>
+        />
 
         <h6>Already a user?</h6>
         <SubheadTwo onClick={() => r.push("/login")} >Login now!</SubheadTwo>
