@@ -49,7 +49,7 @@ export default function LoginForm({
    
     const [user, setUser] = useState({});
     const r = useRouter();
-
+    
     onAuthStateChanged(auth, (currentUser) => {
         setUser(currentUser)
     })
@@ -58,7 +58,6 @@ export default function LoginForm({
         try {
             const user = await signInWithEmailAndPassword(auth, loginEmail, loginPassword)
             console.log(user);
-            r.push('/home');
             
         } catch (error) {
             alert(error.message);

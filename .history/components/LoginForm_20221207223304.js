@@ -3,18 +3,24 @@ import React from "react";
 import { useRouter } from "next/router";
 import { auth } from '../firebase/firebaseConfig';
 import { useState, useEffect } from "react";
-import { onAuthStateChanged, signInWithEmailAndPassword, createUserWithEmailAndPassword, signOut } from "firebase/auth";
-import { Navigate } from "react-router-dom";
+import { onAuthStateChanged, signInWithEmailAndPassword, createUserWithEmailAndPassword } from "firebase/auth";
 
 const LoginCont = styled.div`
     display:flex;
     justify-content:center;
     padding-top:30%;
-    flex-direction:column;
-    align-items:center;
+    
     
 `;
 
+const FormCont = styled.form `
+    display:flex;
+    justify-content:center;
+    flex-direction:column;
+    align-items:center;
+
+
+`;
 
 const LoginInput = styled.input`
     display:flex;
@@ -46,57 +52,47 @@ export default function LoginForm({
 }) { 
     const [loginEmail, setLoginEmail] = useState("");
     const [loginPassword, setLoginPassword] = useState("");
-   
-    const [user, setUser] = useState({});
-    const r = useRouter();
 
-    onAuthStateChanged(auth, (currentUser) => {
-        setUser(currentUser)
-    })
 
     const login = async () => {
         try {
             const user = await signInWithEmailAndPassword(auth, loginEmail, loginPassword)
             console.log(user);
-            r.push('/home');
-            
         } catch (error) {
-            alert(error.message);
+            console.log(error.message);
         }
     };
 
     const logout = async () => {
-        await signOut(auth);
+
     }
     
-   
-
     return <LoginCont>
     
-   
+    <FormCont onSubmit={LoginUser}>
         <h2>{header}</h2>
-       
+        <label>
+            Email
             <LoginInput 
             onChange={(event) => {setLoginEmail(event.target.value);
             }}
             placeholder="Type Email..." name="Email"/>
-     
-         
+        </label>
+        <label>
+            Password
             <LoginInput 
             onChange={(event) => {setLoginPassword(event.target.value);
             }}
                 placeholder="Type Password..." name="password"/>
-  
+        </label>
         <SubmitButton 
-        onClick={login}
+        onClick={LoginUser}
         type="submit" value="Login" />
 
         <h6>New user?</h6>
         <SubheadTwo onClick={() => r.push("/register")}>Register your account now!</SubheadTwo>
-        <h4>User Logged In:</h4>
-        {user?.email}
-        <button onClick={logout}>Logout</button>
-
+        
+    </FormCont>
     
     
 </LoginCont>

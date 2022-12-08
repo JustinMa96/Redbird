@@ -3,8 +3,7 @@ import React from "react";
 import { useRouter } from "next/router";
 import { auth } from '../firebase/firebaseConfig';
 import { useState, useEffect } from "react";
-import { onAuthStateChanged, signInWithEmailAndPassword, createUserWithEmailAndPassword, signOut } from "firebase/auth";
-import { Navigate } from "react-router-dom";
+import { onAuthStateChanged, signInWithEmailAndPassword, createUserWithEmailAndPassword } from "firebase/auth";
 
 const LoginCont = styled.div`
     display:flex;
@@ -15,6 +14,14 @@ const LoginCont = styled.div`
     
 `;
 
+const FormCont = styled.form `
+    display:flex;
+    justify-content:center;
+    flex-direction:column;
+    align-items:center;
+
+
+`;
 
 const LoginInput = styled.input`
     display:flex;
@@ -46,30 +53,23 @@ export default function LoginForm({
 }) { 
     const [loginEmail, setLoginEmail] = useState("");
     const [loginPassword, setLoginPassword] = useState("");
-   
-    const [user, setUser] = useState({});
-    const r = useRouter();
 
-    onAuthStateChanged(auth, (currentUser) => {
-        setUser(currentUser)
-    })
+  
 
     const login = async () => {
         try {
             const user = await signInWithEmailAndPassword(auth, loginEmail, loginPassword)
             console.log(user);
-            r.push('/home');
-            
         } catch (error) {
-            alert(error.message);
+            console.log(error.message);
         }
     };
 
     const logout = async () => {
-        await signOut(auth);
+
     }
     
-   
+    const r = useState();
 
     return <LoginCont>
     
@@ -81,7 +81,7 @@ export default function LoginForm({
             }}
             placeholder="Type Email..." name="Email"/>
      
-         
+            Password
             <LoginInput 
             onChange={(event) => {setLoginPassword(event.target.value);
             }}
@@ -93,9 +93,7 @@ export default function LoginForm({
 
         <h6>New user?</h6>
         <SubheadTwo onClick={() => r.push("/register")}>Register your account now!</SubheadTwo>
-        <h4>User Logged In:</h4>
-        {user?.email}
-        <button onClick={logout}>Logout</button>
+        
 
     
     

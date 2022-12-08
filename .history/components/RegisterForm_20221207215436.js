@@ -3,7 +3,7 @@ import React from "react";
 import { useRouter } from "next/router";
 import { createUserWithEmailAndPassword, onAuthStateChanged } from "firebase/auth";
 import { useState, useEffect } from "react";
-import { auth } from '../firebase/firebaseConfig';
+import auth from '../firebase/firebaseConfig';
 import { Certificate } from "crypto";
 
 
@@ -12,8 +12,6 @@ const RegCont = styled.div`
     display:flex;
     justify-content:center;
     padding-top:30%;
-    flex-direction:column;
-    align-items:center;
     
 `;
 
@@ -34,16 +32,14 @@ const RegInput = styled.input`
     height:30px;
 `;
 
-const SubmitButton = styled.button`
+const SubmitButton = styled.input`
     display:flex;
     margin-top:15px;
     border-radius:5px;
     width:70px;
-    height:25px;
     justify-content:center;
     padding:2px;
     font-weight:bold;
-    
     
 `;
 
@@ -59,47 +55,41 @@ export default function RegisterForm({
     const [registerPassword, setRegisterPassword] = useState("");
 
    const register = async () => {
-        try {
-            const user = await createUserWithEmailAndPassword(auth, registerEmail, registerPassword);
-            console.log(user)
-        } catch (error) {
-            console.log(error.message);
-        }
+        const user = await createUserWithEmailAndPassword()
    };
     
-    const r = useRouter();
-
+    
     return <RegCont>
     
-   
+    <FormCont onSubmit={handleSubmit}>
         <h2>{header}</h2>
-
-        
+        <label>
+            Email
             <RegInput placeholder="Type Email..."
             onChange={(event) => {
-                setRegisterEmail(event.target.value);
+                setRegisterEmail(event.target.value)
             }}
             name="Email"/>
-     
-   
-     
+        </label>
+        <label>
+            Password
             <RegInput placeholder="Type Password..."
             onChange={(event) => {
-                setRegisterPassword(event.target.value);
+                setRegisterPassword(event.target.value)
             }} name="password"/>
-     
-   
-         
+        </label>
+        <label>
+            Confirm Password
             <RegInput placeholder="Re-type Password..."/>
-   
-        <SubmitButton
+        </label>
+        <SubmitButton 
         onClick={register}
-       >Register</SubmitButton>
+        type="submit" value="Register" />
 
         <h6>Already a user?</h6>
         <SubheadTwo onClick={() => r.push("/login")} >Login now!</SubheadTwo>
         
-
+    </FormCont>
    
     
 </RegCont>

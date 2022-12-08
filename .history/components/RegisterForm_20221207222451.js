@@ -3,7 +3,7 @@ import React from "react";
 import { useRouter } from "next/router";
 import { createUserWithEmailAndPassword, onAuthStateChanged } from "firebase/auth";
 import { useState, useEffect } from "react";
-import { auth } from '../firebase/firebaseConfig';
+import auth from '../firebase/firebaseConfig';
 import { Certificate } from "crypto";
 
 
@@ -39,11 +39,10 @@ const SubmitButton = styled.button`
     margin-top:15px;
     border-radius:5px;
     width:70px;
-    height:25px;
+    height:20px;
     justify-content:center;
     padding:2px;
     font-weight:bold;
-    
     
 `;
 
@@ -67,8 +66,7 @@ export default function RegisterForm({
         }
    };
     
-    const r = useRouter();
-
+    
     return <RegCont>
     
    
@@ -77,7 +75,7 @@ export default function RegisterForm({
         
             <RegInput placeholder="Type Email..."
             onChange={(event) => {
-                setRegisterEmail(event.target.value);
+                setRegisterEmail(event.target.value)
             }}
             name="Email"/>
      
@@ -85,16 +83,16 @@ export default function RegisterForm({
      
             <RegInput placeholder="Type Password..."
             onChange={(event) => {
-                setRegisterPassword(event.target.value);
+                setRegisterPassword(event.target.value)
             }} name="password"/>
      
    
          
             <RegInput placeholder="Re-type Password..."/>
    
-        <SubmitButton
+        <SubmitButton 
         onClick={register}
-       >Register</SubmitButton>
+        />
 
         <h6>Already a user?</h6>
         <SubheadTwo onClick={() => r.push("/login")} >Login now!</SubheadTwo>

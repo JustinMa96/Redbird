@@ -3,7 +3,7 @@ import React from "react";
 import { useRouter } from "next/router";
 import { createUserWithEmailAndPassword, onAuthStateChanged } from "firebase/auth";
 import { useState, useEffect } from "react";
-import { auth } from '../firebase/firebaseConfig';
+import auth from '../firebase/firebaseConfig';
 import { Certificate } from "crypto";
 
 

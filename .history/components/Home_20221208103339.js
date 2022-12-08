@@ -8,12 +8,11 @@ import { db } from "../firebase/firebaseConfig.js";
 import "../pages/createpost.js"
 import styled from "styled-components";
 import { useRouter } from "next/router";
- import { getAuth } from "firebase/auth";
-
+import { Auth } from "firebase/auth";
 export default function Home() {
 
   const [ loading, setLoading ] = useState(false);
-  const currentUser = getAuth();
+  const currentUser = useAuth();
 
   const emailRef = useRef();
   const passwordRef = useRef();
