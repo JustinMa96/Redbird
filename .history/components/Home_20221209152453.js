@@ -52,8 +52,8 @@ export default function Home() {
                 <h1>{post.title}</h1>
                 </div>
                 </div>
-                <div className="postTextContainer"> {post.postList}</div>
-                <h3>@{post.user}</h3>
+                <div className="postTextContainer"> {post.postList.postConten}</div>
+                <h3>@{post.author}</h3>
                 </div>
 
           );

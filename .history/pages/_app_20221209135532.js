@@ -1,3 +1,5 @@
+import "../styles/globals.css";
+import { FirebaseApp } from "firebase/app";
 import Head from "next/head";
 import Image from "next/image";
 import styles from "../styles/Home.module.css";
@@ -7,7 +9,7 @@ import { createUserWithEmailAndPassword } from "firebase/auth";
 import { useState } from "react";
 import { auth } from '../firebase/firebaseConfig';
 
-export default function MyApp() {
+export default function Register() {
   
 
   return (
@@ -18,8 +20,6 @@ export default function MyApp() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      <h1 style={{display:'flex', justifyContent:'center', marginTop:150, color:'red'}}>Welcome to RedBird!</h1>
-
       <RegisterForm />
 
     
@@ -28,4 +28,4 @@ export default function MyApp() {
 }
 
 
-
+export default MyApp;

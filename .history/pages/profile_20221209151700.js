@@ -24,7 +24,13 @@ export default function Profile() {
   const auth = getAuth();
   const user = auth.currentUser;
 
-  
+  if (user) {
+    
+    const uid = user.uid;
+    
+  } else {
+
+  }
 
   
 

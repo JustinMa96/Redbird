@@ -22,7 +22,7 @@ export default function Profile() {
   
   
   const auth = getAuth();
-  const user = auth.currentUser;
+  const user = auth.currentUser.email;
 
   
 

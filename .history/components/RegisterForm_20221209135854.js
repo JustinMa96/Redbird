@@ -43,14 +43,13 @@ const SubmitButton = styled.button`
     justify-content:center;
     padding:2px;
     font-weight:bold;
-   
     
     
 `;
 
 const SubheadTwo = styled.h6`
     margin-top:-20px;
-    color:red;
+    color:blue;
 `;
 
 export default function RegisterForm({
@@ -63,7 +62,6 @@ export default function RegisterForm({
         try {
             const user = await createUserWithEmailAndPassword(auth, registerEmail, registerPassword);
             console.log(user)
-            r.push('/profile')
         } catch (error) {
             console.log(error.message);
         }

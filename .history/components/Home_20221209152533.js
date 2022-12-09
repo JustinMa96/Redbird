@@ -53,7 +53,7 @@ export default function Home() {
                 </div>
                 </div>
                 <div className="postTextContainer"> {post.postList}</div>
-                <h3>@{post.user}</h3>
+                <h3>@{post.writer}</h3>
                 </div>
 
           );
