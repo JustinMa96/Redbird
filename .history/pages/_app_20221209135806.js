@@ -1,3 +1,5 @@
+import "../styles/globals.css";
+import { FirebaseApp } from "firebase/app";
 import Head from "next/head";
 import Image from "next/image";
 import styles from "../styles/Home.module.css";
@@ -18,7 +20,7 @@ export default function MyApp() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      <h1 style={{display:'flex', justifyContent:'center', marginTop:150, color:'red'}}>Welcome to RedBird!</h1>
+      <h1 style={{display:'flex', justifyContent:'center', marginTop:150}}>Welcome to RedBird!</h1>
 
       <RegisterForm />
 

@@ -1,8 +1,5 @@
 import styled from "styled-components";
 import React from "react";
-import { useState } from "react";
-import onAuthStateChanged from 'firebase/auth';
-import { auth } from "../firebase/firebaseConfig";
 
 const Cont = styled.div`
 margin: 20px
@@ -21,8 +18,6 @@ export default function ProfileHeader({
     txt="Bob",
     stxt="@boblovescoding"
 }){
-
-    
 
     return(
         <Cont>

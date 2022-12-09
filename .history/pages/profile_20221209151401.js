@@ -24,7 +24,10 @@ export default function Profile() {
   const auth = getAuth();
   const user = auth.currentUser;
 
-  
+  if (user !== null) {
+    const email = user.email;
+
+  } 
 
   
 
@@ -32,7 +35,7 @@ export default function Profile() {
   return (
     <div>
       <UserAvatar></UserAvatar>
-      <ProfileHeader></ProfileHeader>
+      <ProfileHeader txt={`${currentUser}`}></ProfileHeader>
       <Cont>
       <Followers></Followers>
       <Following></Following>

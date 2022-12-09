@@ -9,8 +9,6 @@ import styles from "../styles/Home.module.css";
 import { useState } from "react";
 import onAuthStateChanged from 'firebase/auth';
 import { auth } from "../firebase/firebaseConfig";
-import { getAuth } from "firebase/auth";
-import currentUser from 'firebase/auth';
 
 const Cont = styled.div`
 display: flex;
@@ -19,20 +17,15 @@ justify-content: space-evenly;
 
 export default function Profile() {
 
-  
-  
-  const auth = getAuth();
-  const user = auth.currentUser;
-
+  const [user, setUser] = useState({});
   
 
-  
 
 
   return (
     <div>
       <UserAvatar></UserAvatar>
-      <ProfileHeader></ProfileHeader>
+      <ProfileHeader stxt={currentUser.email}></ProfileHeader>
       <Cont>
       <Followers></Followers>
       <Following></Following>

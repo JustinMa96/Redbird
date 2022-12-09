@@ -22,12 +22,16 @@ export default function ProfileHeader({
     stxt="@boblovescoding"
 }){
 
-    
+    const [user, setUser] = useState({});
+
+    onAuthStateChanged(auth, (currentUser) => {
+        setUser(currentUser)
+    })
 
     return(
         <Cont>
             <HText>{txt}</HText>
-            <SText>{stxt}</SText>
+            <SText>@{user?.email}</SText>
         </Cont>
     )
 }
