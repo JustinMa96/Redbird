@@ -1,15 +1,8 @@
 import Head from "next/head";
-import Image from "next/image";
 import styles from "../styles/Home.module.css";
-import LoginForm from "../components/LoginForm";
 import RegisterForm from "../components/RegisterForm";
-import { createUserWithEmailAndPassword } from "firebase/auth";
-import { useState } from "react";
-import { auth } from '../firebase/firebaseConfig';
 
-export default function MyApp() {
-  
-
+export default function Register() {
   return (
     <div className={styles.container}>
       <Head>
@@ -18,14 +11,18 @@ export default function MyApp() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      <h1 style={{display:'flex', justifyContent:'center', marginTop:150, color:'red'}}>Welcome to RedBird!</h1>
+      <h1
+        style={{
+          display: "flex",
+          justifyContent: "center",
+          marginTop: 150,
+          color: "red",
+        }}
+      >
+        Welcome to RedBird!
+      </h1>
 
       <RegisterForm />
-
-    
     </div>
   );
 }
-
-
-

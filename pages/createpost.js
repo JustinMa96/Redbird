@@ -1,11 +1,12 @@
-
 import React from "react";
 import Head from "next/head";
-import CreatePost from "../components/CreatePost";
+import CreateAPost from "../components/ShareAPost";
+import { db } from "../firebase/firebaseConfig.js";
+
 export default function createPost() {
   return (
     <div>
-     <CreatePost/>
+      <CreateAPost />
     </div>
   );
 }

@@ -1,105 +1,101 @@
 import styled from "styled-components";
 import React from "react";
 import { useRouter } from "next/router";
-import { auth } from '../firebase/firebaseConfig';
-import { useState, useEffect } from "react";
-import { onAuthStateChanged, signInWithEmailAndPassword, createUserWithEmailAndPassword, signOut } from "firebase/auth";
-import { Navigate } from "react-router-dom";
+import { auth } from "../firebase/firebaseConfig";
+import { useState } from "react";
+import {
+  onAuthStateChanged,
+  signInWithEmailAndPassword,
+  signOut,
+} from "firebase/auth";
 
 const LoginCont = styled.div`
-    display:flex;
-    justify-content:center;
-    padding-top:30%;
-    flex-direction:column;
-    align-items:center;
-    
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
 `;
 
-
 const LoginInput = styled.input`
-    display:flex;
-    margin-top:5px;
-    margin-bottom:5px;
-    border-radius:5px;
-    height:30px;
+  display: flex;
+  margin-top: 5px;
+  margin-bottom: 5px;
+  border-radius: 5px;
+  height: 30px;
 `;
 
 const SubmitButton = styled.input`
-    display:flex;
-    margin-top:15px;
-    border-radius:5px;
-    width:70px;
-    justify-content:center;
-    padding:2px;
-    font-weight:bold;
-    
+  display: flex;
+  margin-top: 15px;
+  border-radius: 5px;
+  width: 70px;
+  justify-content: center;
+  padding: 2px;
+  font-weight: bold;
 `;
 
 const SubheadTwo = styled.h6`
-    margin-top:-20px;
-    color:blue;
+  margin-top: -20px;
+  color: blue;
 `;
 
+export default function LoginForm({ header = "Login" }) {
+  const [loginEmail, setLoginEmail] = useState("");
+  const [loginPassword, setLoginPassword] = useState("");
+  const [user, setUser] = useState({});
+  const r = useRouter();
 
-export default function LoginForm({
-    header="Login"
-}) { 
-    const [loginEmail, setLoginEmail] = useState("");
-    const [loginPassword, setLoginPassword] = useState("");
-   
-    const [user, setUser] = useState({});
-    const r = useRouter();
+  React.useEffect(() => {
+    onAuthStateChanged(auth, (currentUser) => setUser(currentUser));
+  }, []);
 
-    onAuthStateChanged(auth, (currentUser) => {
-        setUser(currentUser)
-    })
-
-    const login = async () => {
-        try {
-            const user = await signInWithEmailAndPassword(auth, loginEmail, loginPassword)
-            console.log(user);
-            r.push('/home');
-            
-        } catch (error) {
-            alert(error.message);
-        }
-    };
-
-    const logout = async () => {
-        await signOut(auth);
+  const login = async () => {
+    try {
+      const user = await signInWithEmailAndPassword(
+        auth,
+        loginEmail,
+        loginPassword
+      );
+      console.log(user);
+      r.push("/home");
+    } catch (error) {
+      alert(error.message);
     }
-    
-   
+  };
 
-    return <LoginCont>
-    
-   
-        <h2>{header}</h2>
-       
-            <LoginInput 
-            onChange={(event) => {setLoginEmail(event.target.value);
-            }}
-            placeholder="Type Email..." name="Email"/>
-     
-         
-            <LoginInput 
-            onChange={(event) => {setLoginPassword(event.target.value);
-            }}
-                placeholder="Type Password..." name="password"/>
-  
-        <SubmitButton 
-        onClick={login}
-        type="submit" value="Login" />
+  const logout = async () => {
+    await signOut(auth);
+  };
 
-        <h6>New user?</h6>
-        <SubheadTwo onClick={() => r.push("/")}>Register your account now!</SubheadTwo>
-        <h4>User Logged In:</h4>
-        {user?.email}
-        <button onClick={logout}>Logout</button>
+  return (
+    <LoginCont>
+      <h2>{header}</h2>
 
-    
-    
-</LoginCont>
+      <LoginInput
+        onChange={(event) => {
+          setLoginEmail(event.target.value);
+        }}
+        placeholder="Type Email..."
+        name="Email"
+      />
 
-    
+      <LoginInput
+        onChange={(event) => {
+          setLoginPassword(event.target.value);
+        }}
+        placeholder="Type Password..."
+        name="password"
+      />
+
+      <SubmitButton onClick={login} type="submit" value="Login" />
+
+      <h6>New user?</h6>
+      <SubheadTwo onClick={() => r.push("/register")}>
+        Register your account now!
+      </SubheadTwo>
+      <h4>User Logged In:</h4>
+      {user?.email}
+      <button onClick={logout}>Logout</button>
+    </LoginCont>
+  );
 }

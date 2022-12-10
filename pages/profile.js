@@ -7,35 +7,27 @@ import Followers from "../components/Followers";
 import Following from "../components/Following";
 import styles from "../styles/Home.module.css";
 import { useState } from "react";
-import onAuthStateChanged from 'firebase/auth';
+import onAuthStateChanged from "firebase/auth";
 import { auth } from "../firebase/firebaseConfig";
 import { getAuth } from "firebase/auth";
-import currentUser from 'firebase/auth';
+import currentUser from "firebase/auth";
 
 const Cont = styled.div`
-display: flex;
-justify-content: space-evenly;
-`
+  display: flex;
+  justify-content: space-evenly;
+`;
 
 export default function Profile() {
-
-  
-  
   const auth = getAuth();
   const user = auth.currentUser;
-
-  
-
-  
-
 
   return (
     <div>
       <UserAvatar></UserAvatar>
       <ProfileHeader></ProfileHeader>
       <Cont>
-      <Followers></Followers>
-      <Following></Following>
+        <Followers></Followers>
+        <Following></Following>
       </Cont>
     </div>
   );

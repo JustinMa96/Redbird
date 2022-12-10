@@ -6,5 +6,6 @@ export const Layout = (props) => {
     <Link href={`/login`}></Link>
     <Link href={`/posts`}></Link>
     <Link href={`/profile`}></Link>
+    <Link href={`/creatapost`}></Link>
   </div>;
 };

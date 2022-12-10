@@ -1,24 +1,22 @@
 import React, { useState, useEffect } from "react";
 import { addDoc, collection } from "firebase/firestore";
 import { db, auth } from "../firebase/firebaseConfig.js";
-import { useRouter } from 'next/router'
-
-
+import { useRouter } from "next/router";
+import styled from "styled-components";
 
 function CreatePost() {
   const [postContent, setPostContent] = useState("");
   const postsCollectionRef = collection(db, "posts");
 
-  const router = useRouter()
+  const router = useRouter();
 
   const createPost = async () => {
     await addDoc(postsCollectionRef, {
       postContent,
-      writer: { user: auth.currentUser.email},
+      writer: { user: auth.currentUser.email },
     });
     router.push("/home");
   };
-
 
   return (
     <div className="createPost">
@@ -26,10 +24,12 @@ function CreatePost() {
         <h1>Create A Tweet</h1>
         <div className="postContent">
           <label> Content:</label>
-          <textarea placeholder="What's Happening?"
+          <textarea
+            placeholder="What's Happening?"
             onChange={(event) => {
               setPostContent(event.target.value);
-            }}/>
+            }}
+          />
         </div>
         <button onClick={createPost}> Tweet </button>
       </div>
